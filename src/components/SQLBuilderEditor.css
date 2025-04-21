@@ -1,0 +1,32 @@
+.editor-container {
+  position: relative;
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 0.5rem;
+  z-index: 100;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.autocomplete-dropdown li {
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.autocomplete-dropdown li:hover {
+  background-color: #f0f0f0;
+}
+
+.autocomplete-dropdown .desc {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+}
