@@ -22,7 +22,7 @@ export default function SQLBuilderEditor() {
 
             debounceRef.current = setTimeout(async () => {
                 try {
-                    const response = await fetch('https://fc02-34-169-187-204.ngrok-free.app/match_column', {
+                    const response = await fetch('https://3e3f-34-169-250-144.ngrok-free.app/match_column', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ query }),
@@ -54,7 +54,7 @@ export default function SQLBuilderEditor() {
                     console.error('Autocomplete error:', err);
                     resolve(null);
                 }
-            }, 500);
+            }, 100);
         });
     };
 

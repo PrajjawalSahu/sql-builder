@@ -31,7 +31,7 @@ export default function MetadataForm() {
     };
 
     try {
-      const response = await fetch('https://fc02-34-169-187-204.ngrok-free.app/set_metadata', {
+      const response = await fetch('https://3e3f-34-169-250-144.ngrok-free.app/set_metadata', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
