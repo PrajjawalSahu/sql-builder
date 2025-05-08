@@ -22,7 +22,7 @@ export default function SQLBuilderEditor() {
 
             debounceRef.current = setTimeout(async () => {
                 try {
-                    const response = await fetch('https://3e3f-34-169-250-144.ngrok-free.app/match_column', {
+                    const response = await fetch(`https://${import.meta.env.VITE_API_LINK}/match_column`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ query }),
@@ -79,7 +79,7 @@ export default function SQLBuilderEditor() {
         <div className="editor-container">
             <CodeMirror
                 value={code}
-                height="300px"
+                height="200px"
                 onChange={setCode}
                 // theme={oneDark}
                 extensions={[

@@ -32,3 +32,23 @@
     color: #333;
   }
   
+  .accordion-header {
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    padding-left: 1.2rem;
+  }
+  
+  .accordion-header::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    transition: transform 0.2s ease;
+  }
+  
+  .accordion-header.open::before {
+    content: '▼';
+  }

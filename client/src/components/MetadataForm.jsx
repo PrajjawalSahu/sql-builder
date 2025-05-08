@@ -4,6 +4,7 @@ import './MetadataForm.css';
 export default function MetadataForm() {
   const [metadata, setMetadata] = useState([{ column: '', description: '' }]);
   const [status, setStatus] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleChange = (index, field, value) => {
     const updated = [...metadata];
@@ -31,7 +32,7 @@ export default function MetadataForm() {
     };
 
     try {
-      const response = await fetch('https://3e3f-34-169-250-144.ngrok-free.app/set_metadata', {
+      const response = await fetch(`https://${import.meta.env.VITE_API_LINK}/set_metadata`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -50,25 +51,32 @@ export default function MetadataForm() {
 
   return (
     <div className="metadata-form">
-      <h3>Set Metadata</h3>
-      {metadata.map((row, idx) => (
-        <div key={idx} className="metadata-row">
-          <input
-            placeholder="Column ID (e.g., col_123)"
-            value={row.column}
-            onChange={(e) => handleChange(idx, 'column', e.target.value)}
-          />
-          <input
-            placeholder="Description (e.g., Total annual revenue...)"
-            value={row.description}
-            onChange={(e) => handleChange(idx, 'description', e.target.value)}
-          />
-          <button onClick={() => removeRow(idx)} disabled={metadata.length === 1}>🗑</button>
+      <h3 onClick={() => setIsOpen(!isOpen)} className={`accordion-header ${isOpen ? 'open' : ''}`}>
+          Set Metadata
+      </h3>
+
+      {isOpen && (
+        <div className="accordion-content">
+          {metadata.map((row, idx) => (
+            <div key={idx} className="metadata-row">
+              <input
+                placeholder="Column ID (e.g., col_123)"
+                value={row.column}
+                onChange={(e) => handleChange(idx, 'column', e.target.value)}
+              />
+              <input
+                placeholder="Description (e.g., Total annual revenue...)"
+                value={row.description}
+                onChange={(e) => handleChange(idx, 'description', e.target.value)}
+              />
+              <button onClick={() => removeRow(idx)} disabled={metadata.length === 1}>🗑</button>
+            </div>
+          ))}
+          <button onClick={addRow}>➕ Add More</button>
+          <button onClick={handleSubmit}>🚀 Set Metadata</button>
+          {status && <div className="status">{status}</div>}
         </div>
-      ))}
-      <button onClick={addRow}>➕ Add More</button>
-      <button onClick={handleSubmit}>🚀 Set Metadata</button>
-      {status && <div className="status">{status}</div>}
+      )}
     </div>
   );
 }
