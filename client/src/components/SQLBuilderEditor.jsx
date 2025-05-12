@@ -22,7 +22,7 @@ export default function SQLBuilderEditor() {
 
             debounceRef.current = setTimeout(async () => {
                 try {
-                    const response = await fetch(`https://${import.meta.env.VITE_API_LINK}/match_column`, {
+                    const response = await fetch(`${import.meta.env.VITE_API_LINK}/match_column`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ query }),
@@ -37,9 +37,9 @@ export default function SQLBuilderEditor() {
                         return;
                     }
                     const options = result.top_matches.map((match) => ({
-                        label: '@' + match.column,         // So it matches what user typed
+                        label: '@' + match.colAndDesc,         // So it matches what user typed
                         type: 'variable',
-                        apply: match.column,               // What gets inserted (without @)
+                        apply: match.col,               // What gets inserted (without @)
                     }));
                     // Store in state (if needed elsewhere)
                     // setDynamicOptions(options);

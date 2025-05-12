@@ -32,7 +32,7 @@ export default function MetadataForm() {
     };
 
     try {
-      const response = await fetch(`https://${import.meta.env.VITE_API_LINK}/set_metadata`, {
+      const response = await fetch(`${import.meta.env.VITE_API_LINK}/set_metadata`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
